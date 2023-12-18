@@ -1,0 +1,44 @@
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #b6b6b6;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+
+  .author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b6b6b65a;
+    border-radius: 5px;
+    padding: 5px;
+    .avatar {
+      width: 30px;
+      height: 30px;
+      background-color: aliceblue;
+      border-radius: 10px;
+    }
+  }
+
+  .description {
+    margin-top: 10px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b6b6b6;
+    margin-bottom: 10px;
+
+    .reaction {
+      display: flex;
+      column-gap: 10px;
+    }
+  }
+}

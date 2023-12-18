@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+  .input {
+    height: 40px;
+    text-indent: 5px;
+    outline: none;
+    width: 100%;
+  }
+
+  .send {
+    position: absolute;
+    right: 5px;
+    top: 6px;
+    cursor: pointer;
+  }
+}
