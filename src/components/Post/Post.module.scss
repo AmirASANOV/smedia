@@ -39,6 +39,22 @@
     .reaction {
       display: flex;
       column-gap: 10px;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 100px;
+
+      .likes {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 40px;
+      }
+      .dislikes {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 40px;
+      }
     }
   }
 }

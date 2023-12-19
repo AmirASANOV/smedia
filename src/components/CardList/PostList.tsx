@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
-import CardItem from "../Post/Post";
-import s from "./CardList.module.scss";
+import Post from "../Post/Post";
+import s from "./PostList.module.scss";
 import axios from "axios";
-
-type IPost = {
-  id: number;
-  text: string;
-  profile: IProfile;
-};
-
-type IProfile = {
-  id: number;
-  first_name: string;
-  last_name: string;
-  username: string;
-};
+import { IPost } from "../../types/post";
 
 const PostList: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -33,7 +21,7 @@ const PostList: React.FC = () => {
   return (
     <div className={s.wrapper}>
       {posts.map((post: IPost, i: number) => (
-        <CardItem post={post} key={i} />
+        <Post post={post} key={i} />
       ))}
     </div>
   );
