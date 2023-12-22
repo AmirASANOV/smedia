@@ -12,6 +12,17 @@ const Post: React.FC<IPostProps> = (props) => {
   console.log(props);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const totalSlides = props.post.attachments.length; //3
+
+  const nextSlide = () => {
+    setCurrentSlide((prevIndex) => (prevIndex + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
+  };
+
   return (
     <div className={s.wrapper}>
       {isVisible && <Modal setIsVisible={setIsVisible} />}
@@ -28,29 +39,39 @@ const Post: React.FC<IPostProps> = (props) => {
       <div className={s.description}>
         <p>{props.post.text}</p>
 
-        <div className={s.arrows}>
-          <img
-            className={s.arrowLeft}
-            src="/images/slider/arrowLeft.svg"
-            alt=""
-          />
-
-          <img
-            className={s.arrowRight}
-            src="/images/slider/arrowRight.svg"
-            alt="arrow"
-          />
-        </div>
-
         <div className={s.imgContainer}>
           {props.post.attachments.map((attachment: IAttachment, i: number) => (
-            <img
+            <div
               key={i}
-              className={s.imgPost}
-              src={`http://api.social_network.lvh.me${attachment.file}`}
-              alt="image"
-            />
+              className={`${s.slideContainer} ${
+                i === currentSlide ? s.active : ""
+              }`}
+            >
+              <img
+                className={s.imgPost}
+                src={`http://api.social_network.lvh.me${attachment.file}`}
+                alt="image"
+              />
+            </div>
           ))}
+
+          {props.post.attachments && (
+            <div className={s.arrows}>
+              <img
+                className={s.prevButton}
+                onClick={prevSlide}
+                src="/images/slider/arrowLeft.svg"
+                alt=""
+              />
+
+              <img
+                className={s.nextButton}
+                onClick={nextSlide}
+                src="/images/slider/arrowRight.svg"
+                alt="arrow"
+              />
+            </div>
+          )}
         </div>
       </div>
 

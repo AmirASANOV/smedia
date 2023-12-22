@@ -30,22 +30,22 @@
     width: 100%;
     position: relative;
 
-    .arrows {
-      width: 100%;
-      position: absolute;
-      display: flex;
-      justify-content: space-between;
-      top: 50%;
-    }
-
     .imgContainer {
       margin-top: 20px;
       display: flex;
+      justify-content: center;
       overflow: scroll;
-      height: 67vh;
 
-      .imgPost{
-      margin-right: 20px;
+      .imgPost {
+        height: 67vh;
+        transition: .3s;
+      }
+      .arrows {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        top: 50%;
       }
     }
   }
@@ -79,4 +79,27 @@
       }
     }
   }
+}
+
+.slideContainer {
+  display: none;
+}
+
+.slideContainer.active {
+  display: block;
+}
+
+.prevButton,
+.nextButton {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.prevButton {
+  left: 0px;
+}
+
+.nextButton {
+  right: 0px;
 }
