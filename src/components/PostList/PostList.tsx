@@ -3,6 +3,7 @@ import Post from "../Post/Post";
 import s from "./PostList.module.scss";
 import axios from "axios";
 import { IPost } from "../../types/post";
+import Spinner from "../UI/Spinner/Spinner";
 
 const PostList: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -10,7 +11,7 @@ const PostList: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    
+
     axios
       .get("http://api.social_network.lvh.me/posts/profiles/2")
       .then(function (response) {
@@ -26,7 +27,7 @@ const PostList: React.FC = () => {
   return (
     <div className={s.wrapper}>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <Spinner />
       ) : (
         posts.map((post: IPost, i: number) => <Post post={post} key={i} />)
       )}
