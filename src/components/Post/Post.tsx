@@ -11,9 +11,9 @@ interface IPostProps {
 const Post: React.FC<IPostProps> = (props) => {
   console.log(props);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const totalSlides = props.post.attachments.length; //3
+
+  const totalSlides = props.post.attachments.length;
 
   const nextSlide = () => {
     setCurrentSlide((prevIndex) => (prevIndex + 1) % totalSlides);
@@ -27,7 +27,13 @@ const Post: React.FC<IPostProps> = (props) => {
     <div className={s.wrapper}>
       {isVisible && <Modal setIsVisible={setIsVisible} />}
       <div className={s.author}>
-        <div className={s.avatar}></div>
+        <div className={s.avatar}>
+          <img
+          className={s.avatarImg}
+            src={`http://api.social_network.lvh.me${props.post.profile.avatar}`}
+            alt="avatar"
+          />
+        </div>
         <h4>{props.post.profile.username}</h4>
 
         <img
@@ -55,7 +61,7 @@ const Post: React.FC<IPostProps> = (props) => {
             </div>
           ))}
 
-          {props.post.attachments && (
+          {props.post.attachments.length > 2 && (
             <div className={s.arrows}>
               <img
                 className={s.prevButton}
