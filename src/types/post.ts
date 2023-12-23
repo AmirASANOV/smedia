@@ -10,6 +10,6 @@ export interface IPost {
 }
 
 export type IAttachment = {
-  type: string;
+  type: "IMAGE" | "FILE";
   file: string;
 };

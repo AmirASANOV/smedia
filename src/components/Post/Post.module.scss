@@ -36,47 +36,7 @@
     width: 100%;
     position: relative;
 
-    .imgContainer {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      overflow: scroll;
-
-      .slideContainer {
-        display: none;
-      }
-
-      .slideContainer.active {
-        display: block;
-      }
-
-      .imgPost {
-        height: 67vh;
-        transition: 0.3s;
-      }
-      .arrows {
-        width: 100%;
-        position: absolute;
-        display: flex;
-        justify-content: space-between;
-        top: 50%;
-
-        .prevButton,
-        .nextButton {
-          position: absolute;
-          top: 50%;
-          cursor: pointer;
-        }
-
-        .prevButton {
-          left: 0px;
-        }
-
-        .nextButton {
-          right: 0px;
-        }
-      }
-    }
+    
   }
 
   .container {

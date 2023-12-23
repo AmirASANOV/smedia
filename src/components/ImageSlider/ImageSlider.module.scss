@@ -1,0 +1,56 @@
+.imgContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  .slideContainer {
+    display: none;
+  }
+
+  .slideContainer.active {
+    display: block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .imgPostBG {
+    width: 100%;
+    height: 67vh;
+    object-fit: cover;
+    filter: blur(4px);
+  }
+
+  .imgPost {
+    width: 100%;
+    height: 67vh;
+    transition: 0.3s;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .arrows {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 50%;
+
+    .prevButton,
+    .nextButton {
+      position: absolute;
+      top: 50%;
+      cursor: pointer;
+    }
+
+    .prevButton {
+      left: 0px;
+    }
+
+    .nextButton {
+      right: 0px;
+    }
+  }
+}
