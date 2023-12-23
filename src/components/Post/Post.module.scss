@@ -16,7 +16,7 @@
     background-color: #b6b6b65a;
     border-radius: 5px;
     padding: 5px;
-    
+
     .avatar {
       width: 30px;
       height: 30px;
@@ -33,7 +33,6 @@
 
   .description {
     margin-top: 10px;
-
     width: 100%;
     position: relative;
 
@@ -42,6 +41,14 @@
       display: flex;
       justify-content: center;
       overflow: scroll;
+
+      .slideContainer {
+        display: none;
+      }
+
+      .slideContainer.active {
+        display: block;
+      }
 
       .imgPost {
         height: 67vh;
@@ -53,6 +60,21 @@
         display: flex;
         justify-content: space-between;
         top: 50%;
+
+        .prevButton,
+        .nextButton {
+          position: absolute;
+          top: 50%;
+          cursor: pointer;
+        }
+
+        .prevButton {
+          left: 0px;
+        }
+
+        .nextButton {
+          right: 0px;
+        }
       }
     }
   }
@@ -86,27 +108,4 @@
       }
     }
   }
-}
-
-.slideContainer {
-  display: none;
-}
-
-.slideContainer.active {
-  display: block;
-}
-
-.prevButton,
-.nextButton {
-  position: absolute;
-  top: 50%;
-  cursor: pointer;
-}
-
-.prevButton {
-  left: 0px;
-}
-
-.nextButton {
-  right: 0px;
 }
