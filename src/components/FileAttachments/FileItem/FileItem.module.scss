@@ -2,14 +2,15 @@
   margin: 10px 0;
   display: flex;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   border: 1px solid teal;
   align-items: center;
   border-radius: 5px;
   padding: 5px;
+  height: 50px;
 
   .fileLogo {
-    height: 50px;
+    height: 70%;
   }
 
   .container {
@@ -19,7 +20,7 @@
     padding: 10px;
 
     .downloadLogo {
-      height: 30px;
+      height: 50%;
       cursor: pointer;
     }
   }

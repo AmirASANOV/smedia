@@ -6,31 +6,47 @@ import axios from "axios";
 import s from "./CommentsSection.module.scss";
 import Input from "../UI/Input/Input";
 import Spinner from "../UI/Spinner/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { setComments, setStatus } from "../../store/posts";
+import { StateStatus } from "../../types/store";
+import { IRootState } from "../../store";
 
 interface ICommentsSectionProps {
   postId: number;
+  comments?: IComment[];
 }
 
-const CommentsSection: React.FC<ICommentsSectionProps> = (props) => {
-  const [comments, setComments] = useState<IComment[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+const CommentsSection: React.FC<ICommentsSectionProps> = ({
+  postId,
+  comments,
+}) => {
+  const dispatch = useDispatch();
+  const stateStatus = useSelector<IRootState, StateStatus>(
+    (store) => store.posts.status
+  );
 
   const fetchComments = () => {
-    setIsLoading(true);
+    dispatch(setStatus(StateStatus.pending));
     axios
-      .get(`http://api.social_network.lvh.me/posts/${props.postId}/comments`)
+      .get(`http://api.social_network.lvh.me/posts/${postId}/comments`)
       .then(function (response) {
-        setComments(response.data.comments);
-        setIsLoading(false);
+        dispatch(
+          setComments({
+            postId,
+            comments: response.data.comments,
+          })
+        );
+        dispatch(setStatus(StateStatus.fulfilled));
       })
       .catch(function (error) {
         console.log(error);
+        dispatch(setStatus(StateStatus.rejected));
       });
   };
 
   return (
     <div className={s.commentSection}>
-      {isLoading ? (
+      {stateStatus === StateStatus.pending ? (
         <Spinner />
       ) : (
         <div className={s.commentCard}>

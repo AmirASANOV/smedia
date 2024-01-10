@@ -17,16 +17,29 @@
     border-radius: 5px;
     padding: 5px;
 
-    .avatar {
-      width: 30px;
-      height: 30px;
+    .header {
+      width: fit-content;
+      height: fit-content;
       background-color: aliceblue;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+      padding-right: 20px;
+      padding-bottom: 2px;
 
       .avatarImg {
-        width: 100%;
+        width: 30px;
         height: 100%;
         border-radius: 10px;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        .update {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -35,8 +48,6 @@
     margin-top: 10px;
     width: 100%;
     position: relative;
-
-    
   }
 
   .container {

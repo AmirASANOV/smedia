@@ -1,32 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Post from "../Post/Post";
 import s from "./PostList.module.scss";
-import axios from "axios";
 import { IPost } from "../../types/post";
 import Spinner from "../UI/Spinner/Spinner";
+import { useSelector } from "react-redux";
+import { IRootState } from "../../store";
+import { StateStatus } from "../../types/store";
 
 const PostList: React.FC = () => {
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    axios
-      .get("http://api.social_network.lvh.me/posts/profiles/2")
-      .then(function (response) {
-        setPosts(response.data.posts);
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setIsLoading(false);
-      });
-  }, []);
+  const posts = useSelector<IRootState, IPost[]>((store) => store.posts.posts);
+  const stateStatus = useSelector<IRootState, StateStatus>(
+    (store) => store.posts.status
+  );
 
   return (
     <div className={s.wrapper}>
-      {isLoading ? (
+      {stateStatus === StateStatus.pending ? (
         <Spinner />
       ) : (
         posts.map((post: IPost, i: number) => <Post post={post} key={i} />)
