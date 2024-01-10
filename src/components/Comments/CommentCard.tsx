@@ -10,10 +10,13 @@ interface ICommentCardProps {
 
 const CommentCard: React.FC<ICommentCardProps> = (props) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  function changeVisible() {
+    setIsVisible(!isVisible);
+  }
 
   return (
     <div className={s.wrapper}>
-      {isVisible && <Modal setIsVisible={setIsVisible} />}
+      {isVisible && <Modal changeVisible={changeVisible} />}
 
       <div className={s.avatar}></div>
       <div className={s.preview}>

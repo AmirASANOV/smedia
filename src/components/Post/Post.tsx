@@ -12,8 +12,11 @@ interface IPostProps {
 }
 
 const Post: React.FC<IPostProps> = (props) => {
-  console.log(props);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  function changeVisible() {
+    setIsVisible(!isVisible);
+  }
 
   let dateObject = new Date(props.post.created_at);
   let date = dateObject.toISOString().split("T")[0];
@@ -21,7 +24,7 @@ const Post: React.FC<IPostProps> = (props) => {
 
   return (
     <div className={s.wrapper}>
-      {isVisible && <Modal setIsVisible={setIsVisible} />}
+      {isVisible && <Modal changeVisible={changeVisible} />}
       <div className={s.author}>
         <div className={s.header}>
           <img

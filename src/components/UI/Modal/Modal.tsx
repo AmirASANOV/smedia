@@ -2,21 +2,17 @@ import React from "react";
 import s from "./Modal.module.scss";
 
 interface IModalProps {
-  setIsVisible: (isVisible: boolean) => void;
+  changeVisible: () => void;
 }
 
-const Modal: React.FC<IModalProps> = ({ setIsVisible }) => {
-  function hide() {
-    setIsVisible(false);
-  }
-
+const Modal: React.FC<IModalProps> = ({ changeVisible }) => {
   return (
-    <div onClick={hide} className={s.wrapper}>
+    <div onClick={changeVisible} className={s.wrapper}>
       <div className={s.window}>
-        <button onClick={hide} className={s.button}>
+        <button onClick={changeVisible} className={s.button}>
           delete
         </button>
-        <button className={s.button}>edit post</button>
+        <button className={s.button}>edit</button>
       </div>
     </div>
   );
