@@ -10,9 +10,6 @@ interface IFileItemProps {
 const FileItem: React.FC<IFileItemProps> = (props) => {
   const urlFile = `http://0.0.0.0:8080${props.file.file}`;
 
-  console.log(props);
-  console.log(props.file.file);
-
   const handleDownload = async () => {
     try {
       const response = await axios.get(urlFile, {
@@ -38,21 +35,14 @@ const FileItem: React.FC<IFileItemProps> = (props) => {
     <div className={s.wrapper}>
       <img className={s.fileLogo} src="/images/file/fileIcon.svg" alt="icon" />
 
-      <div className={s.container}>
-        <p>
-          {props.file.file.replaceAll("/media/files/", "").length <= 10
-            ? props.file.file.replaceAll("/media/files/", "")
-            : props.file.file.replaceAll("/media/files/", "").slice(0, 20) +
-              "..."}
-        </p>
+      <p className={s.fileName}>{props.file.file}</p>
 
-        <img
-          className={s.downloadLogo}
-          src="/images/file/download.svg"
-          onClick={handleDownload}
-          alt="icon"
-        />
-      </div>
+      <img
+        className={s.downloadLogo}
+        src="/images/file/download.svg"
+        onClick={handleDownload}
+        alt="icon"
+      />
     </div>
   );
 };

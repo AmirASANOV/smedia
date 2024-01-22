@@ -14,11 +14,13 @@ import { IRootState } from "../../store";
 interface ICommentsSectionProps {
   postId: number;
   comments?: IComment[];
+  commentsCount?: number;
 }
 
 const CommentsSection: React.FC<ICommentsSectionProps> = ({
   postId,
   comments,
+  commentsCount,
 }) => {
   const dispatch = useDispatch();
   const stateStatus = useSelector<IRootState, StateStatus>(
@@ -51,7 +53,9 @@ const CommentsSection: React.FC<ICommentsSectionProps> = ({
       ) : (
         <div className={s.commentCard}>
           {!comments ? (
-            <Button onClick={fetchComments}>Load comments</Button>
+            <Button onClick={fetchComments}>
+              {`Загрузить комментарии: ${commentsCount}`}
+            </Button>
           ) : (
             <div>
               {comments.map((comment: IComment, i) => (

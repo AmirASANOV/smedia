@@ -2,26 +2,27 @@
   margin: 10px 0;
   display: flex;
   width: 100%;
-  max-width: 300px;
   border: 1px solid teal;
   align-items: center;
   border-radius: 5px;
   padding: 5px;
   height: 50px;
+  column-gap: 10px;
+  overflow: hidden;
 
   .fileLogo {
     height: 70%;
   }
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 10px;
+  .fileName {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+  }
 
-    .downloadLogo {
-      height: 50%;
-      cursor: pointer;
-    }
+  .downloadLogo {
+    height: 50%;
+    cursor: pointer;
   }
 }

@@ -1,46 +1,37 @@
 import React, { useState } from "react";
 import s from "./Post.module.scss";
 import Modal from "../UI/Modal/Modal";
-import { IAttachment, IPost } from "../../types/post";
 import CommentsSection from "../Comments/CommentsSection";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import FileAttachments from "../FileAttachments/FileAttachments";
 import { IPostState } from "../../store/posts/types";
+import { formatDateTime } from "../../utils/formatDate";
+import Avatar from "../Avatar/Avatar";
 
 interface IPostProps {
   post: IPostState;
 }
 
 const Post: React.FC<IPostProps> = (props) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  function changeVisible() {
-    setIsVisible(!isVisible);
+  function changeModalVisible() {
+    setModalVisible(!modalVisible);
   }
-
-  let dateObject = new Date(props.post.created_at);
-  let date = dateObject.toISOString().split("T")[0];
-  let time = dateObject.toTimeString().split(" ")[0].substring(0, 5);
 
   return (
     <div className={s.wrapper}>
-      {isVisible && <Modal changeVisible={changeVisible} />}
       <div className={s.author}>
         <div className={s.header}>
-          <img
-            className={s.avatarImg}
-            src={`http://api.social_network.lvh.me${props.post.profile.avatar}`}
-            alt="avatar"
-          />
-
+          <Avatar src={props.post.profile.avatar} />
           <div className={s.info}>
             <h4>{props.post.profile.username}</h4>
-            <p className={s.update}>{[date, time].join(" в ")}</p>
+            <p className={s.update}>{formatDateTime(props.post.created_at)}</p>
           </div>
         </div>
 
         <img
-          onClick={() => setIsVisible(!isVisible)}
+          onClick={changeModalVisible}
           src="images/cardItem/dots.svg"
           alt=""
         />
@@ -73,10 +64,15 @@ const Post: React.FC<IPostProps> = (props) => {
           </div>
         </div>
       </div>
-      <CommentsSection
-        postId={props.post.id}
-        comments={props.post.commentsList}
-      />
+
+      {props.post.comments > 0 && (
+        <CommentsSection
+          postId={props.post.id}
+          comments={props.post.commentsList}
+          commentsCount={props.post.comments}
+        />
+      )}
+      {modalVisible && <Modal changeVisible={changeModalVisible} />}
     </div>
   );
 };
